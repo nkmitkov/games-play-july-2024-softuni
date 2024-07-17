@@ -1,0 +1,26 @@
+{
+    "570e418f-eabf-48d9-b242-ea891dc746e9": {
+        "title": "Test",
+        "category": "action",
+        "maxLevel": "8",
+        "imageUrl": "https://t3.ftcdn.net/jpg/07/24/10/62/360_F_724106283_J3p0pUZtN0VqWl7cjRNBTTMSEZxYnosS.jpg",
+        "summary": "asdadewfwef",
+        "_id": "570e418f-eabf-48d9-b242-ea891dc746e9"
+    },
+    "70a48dbf-76db-432c-bf83-bd49f39de62a": {
+        "title": "Counter-Strike 3.0",
+        "category": "Action",
+        "maxLevel": "100",
+        "imageUrl": "https://staticg.sportskeeda.com/editor/2019/03/cedbb-15534102082658-800.jpg",
+        "summary": "The best action game ever!",
+        "_id": "70a48dbf-76db-432c-bf83-bd49f39de62a"
+    },
+    "a6576dca-d407-47a0-881e-67b024f07cef": {
+        "title": "Final Fantasy",
+        "category": "Fantasy",
+        "maxLevel": "109",
+        "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/552700/extras/MainCapsule_616x353.png?t=1673947787",
+        "summary": "The best fantasy game ever!",
+        "_id": "a6576dca-d407-47a0-881e-67b024f07cef"
+    }
+}
