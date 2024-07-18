@@ -22,6 +22,7 @@ export default function GameDetails() {
     const addCommentHandler = async (e) => {
         e.preventDefault();
 
+        // i must use controlled form and clear the form after creating a comment
         const formData = new FormData(e.currentTarget);
 
         const createdComment = await commentService.create(
@@ -30,7 +31,7 @@ export default function GameDetails() {
             formData.get("comment"),
         );
 
-        console.log(createdComment);
+        setComments(state => [...state, createdComment]);
     };
 
     return (
@@ -54,8 +55,8 @@ export default function GameDetails() {
                     <h2>Comments:</h2>
                     <ul>
 
-                        {comments.map(({ username, text }) => (
-                            <li className="comment">
+                        {comments.map(({ _id, username, text }) => (
+                            <li className="comment" key={_id}>
                                 <p>{username} : {text}</p>
                             </li>
                         ))}
