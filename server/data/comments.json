@@ -1,0 +1,14 @@
+{
+    "f2b50f8e-08a8-4f6e-8421-6064e35699e2": {
+        "gameId": "70a48dbf-76db-432c-bf83-bd49f39de62a",
+        "username": "Nick",
+        "text": "I love this game!",
+        "_id": "f2b50f8e-08a8-4f6e-8421-6064e35699e2"
+    },
+    "f3fac0a3-ceec-47c1-9877-3972694f1f8d": {
+        "gameId": "70a48dbf-76db-432c-bf83-bd49f39de62a",
+        "username": "Test",
+        "text": ":-) Random text for the test (-:",
+        "_id": "f3fac0a3-ceec-47c1-9877-3972694f1f8d"
+    }
+}

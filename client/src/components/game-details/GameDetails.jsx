@@ -6,21 +6,26 @@ import * as commentService from "../../services/commentService";
 
 export default function GameDetails() {
     const { gameId } = useParams();
+    const [comments, setComments] = useState([]);
     const [game, setGame] = useState({});
 
     useEffect(() => {
         gameService.getOneById(gameId)
             .then(data => setGame(data))
             .catch(err => console.log(err));
-    }, []);
+
+        commentService.getAll()
+            .then(setComments)
+            .catch(err => console.log(err));
+    }, [gameId]);
 
     const addCommentHandler = async (e) => {
         e.preventDefault();
 
-        const formData = new FormData(e.currentTarget); 
+        const formData = new FormData(e.currentTarget);
 
         const createdComment = await commentService.create(
-            gameId, 
+            gameId,
             formData.get("username"),
             formData.get("comment"),
         );
@@ -48,16 +53,17 @@ export default function GameDetails() {
                 <div className="details-comments">
                     <h2>Comments:</h2>
                     <ul>
-                        {/* <!-- list all comments for current game (If any) --> */}
-                        <li className="comment">
-                            <p>Content: I rate this one quite highly.</p>
-                        </li>
-                        <li className="comment">
-                            <p>Content: The best game.</p>
-                        </li>
+
+                        {comments.map(({ username, text }) => (
+                            <li className="comment">
+                                <p>{username} : {text}</p>
+                            </li>
+                        ))}
+
                     </ul>
-                    {/* <!-- Display paragraph: If there are no games in the database --> */}
-                    <p className="no-comment">No comments.</p>
+
+                    {comments.length === 0 && (<p className="no-comment">No comments.</p>)}
+
                 </div>
 
                 {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
