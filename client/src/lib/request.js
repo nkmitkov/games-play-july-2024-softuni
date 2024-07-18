@@ -3,7 +3,7 @@ const buildOptions = (data) => {
 
     if (data) {
         options.body = JSON.stringify(data);
-        options.headers = { "content-type": "application/json" } // we need the user accessToken as well
+        options.headers = { "content-type": "application/json" }
     }
 
     return options;
