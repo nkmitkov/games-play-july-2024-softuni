@@ -14,7 +14,7 @@ export default function GameDetails() {
             .then(data => setGame(data))
             .catch(err => console.log(err));
 
-        commentService.getAll()
+        commentService.getAll(gameId)
             .then(setComments)
             .catch(err => console.log(err));
     }, [gameId]);
