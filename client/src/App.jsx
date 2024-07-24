@@ -16,7 +16,7 @@ import GameEdit from "./components/game-edit/GameEdit";
 
 function App() {
     const navigate = useNavigate();
-    const [auth, setAuth] = useState();
+    const [auth, setAuth] = useState({});
 
     const loginSubmitHandler = async (values) => {
         try {
@@ -30,8 +30,28 @@ function App() {
         }
     };
 
+    const registerSubmitHandler = async (values) => {
+        try {
+            const result = await authService.register(values.username, values.email, values.password);
+            
+            setAuth(result);
+    
+            navigate(Path.Home);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const values = {
+        loginSubmitHandler,
+        registerSubmitHandler,
+        username: auth.username,
+        email: auth.email,
+        isAuthenticated: !!auth.email,
+    };
+
     return (
-        <AuthContext.Provider value={{ loginSubmitHandler }}>
+        <AuthContext.Provider value={values}>
             <div id="box">
                 <Header />
 
