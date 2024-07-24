@@ -38,13 +38,13 @@ function App() {
                 <main id="main-content">
 
                     <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/games" element={<GameList />} />
-                        <Route path="/games/create" element={<GameCreate />} />
-                        <Route path="/games/:gameId" element={<GameDetails />} />
-                        <Route path="/games/edit" element={<GameEdit />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
+                        <Route path={Path.Home} element={<Home />} />
+                        <Route path={Path.Catalog} element={<GameList />} />
+                        <Route path={Path.Create} element={<GameCreate />} />
+                        <Route path={Path.Details} element={<GameDetails />} />
+                        <Route path={Path.Edit} element={<GameEdit />} />
+                        <Route path={Path.Login} element={<Login />} />
+                        <Route path={Path.Register} element={<Register />} />
                     </Routes>
 
                 </main>

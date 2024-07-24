@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+import Path from "../../paths";
+
 export default function Register() {
     return (
         <section id="register-page" className="content auth">
@@ -20,7 +22,7 @@ export default function Register() {
                     <input className="btn submit" type="submit" value="Register" />
 
                     <p className="field">
-                        <span>If you already have profile click <Link href="/login">here</Link></span>
+                        <span>If you already have profile click <Link to={Path.Login}>here</Link></span>
                     </p>
                 </div>
             </form>

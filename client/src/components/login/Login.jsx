@@ -1,8 +1,9 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import useForm from "../../hooks/useForm";
-import { useContext } from "react";
 import AuthContext from "../../contexts/authContext";
+import Path from "../../paths";
 
 const LoginFormKeys = {
     Email: "email",
@@ -43,7 +44,7 @@ export default function Login() {
                     />
                     <input type="submit" className="btn submit" value="Login" />
                     <p className="field">
-                        <span>If you don't have profile click <Link href="/login">here</Link></span>
+                        <span>If you don't have profile click <Link to={Path.Register}>here</Link></span>
                     </p>
                 </div>
             </form>
