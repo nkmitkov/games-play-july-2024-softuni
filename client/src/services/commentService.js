@@ -7,11 +7,9 @@ export const getAll = async (gameId) => {
         where: `gameId="${gameId}"`,
     });
 
-    // const result = await request.get(`${baseUrl}?${query}`);
-    const result = await request.get(baseUrl);
+    const result = await request.get(`${baseUrl}?${query}`);
 
-    // TODO: temp solution until migration to collections service
-    return result.filter(comment => comment.gameId === gameId);
+    return result;
 };
 
 export const create = async (gameId, username, text) => {
