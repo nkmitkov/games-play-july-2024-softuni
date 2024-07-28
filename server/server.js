@@ -1339,6 +1339,28 @@
     	}
     };
     var seedData = {
+        games: {
+            "abc69a80-7593-4a76-bad3-8f369f9198e6" : {
+                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+                "title": "Counter-Strike 1.6",
+                "category": "Action",
+                "maxLevel": "1",
+                "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/67/Counter-Strike_Box.jpg",
+                "summary": "Best shooting game",
+                "_createdOn": 1722191378567,
+                "_id": "abc69a80-7593-4a76-bad3-8f369f9198e6"
+            },
+            "35d1120b-384f-4d6c-b332-869b9006f5cd" : {
+                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+                "title": "MK III Ultimate",
+                "category": "Action",
+                "maxLevel": "11",
+                "imageUrl": "https://assets-prd.ignimgs.com/2022/01/26/ultimatemk3-sq-1643230516135.jpg",
+                "summary": "Best fighting game",
+                "_createdOn": 1722191552396,
+                "_id": "35d1120b-384f-4d6c-b332-869b9006f5cd"
+            }
+        },
     	recipes: {
     		"3987279d-0ad4-4afb-8ca9-5b256ae3b298": {
     			_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
