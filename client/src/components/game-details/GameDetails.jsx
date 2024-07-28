@@ -5,6 +5,7 @@ import * as gameService from "../../services/gameService";
 import * as commentService from "../../services/commentService";
 import AuthContext from "../../contexts/authContext";
 import reducer from "./commentReducer";
+import useForm from "../../hooks/useForm";
 
 export default function GameDetails() {
     const { email } = useContext(AuthContext);
@@ -26,17 +27,12 @@ export default function GameDetails() {
                 });
             })
             .catch(err => console.log(err));
-    }, [gameId]);
+    }, []);
 
-    const addCommentHandler = async (e) => {
-        e.preventDefault();
-
-        // i must use controlled form and clear the form after creating a comment
-        const formData = new FormData(e.currentTarget);
-
+    const addCommentHandler = async (values) => {
         const createdComment = await commentService.create(
             gameId,
-            formData.get("comment"),
+            values.comment,
         );
 
         // setComments(state => [...state, { ...createdComment, owner: { email } }]);
@@ -48,6 +44,10 @@ export default function GameDetails() {
             payload: createdComment,
         });
     };
+
+    const {values, onChangeHandler, onSubmitHandler} = useForm(addCommentHandler, {
+        comment: "",
+    });
 
     return (
         <section id="game-details">
@@ -93,8 +93,13 @@ export default function GameDetails() {
             {/* <!-- Add Comment ( Only for logged-in users, which is not creators of the current game ) --> */}
             <article className="create-comment">
                 <label>Add new comment:</label>
-                <form className="form" onSubmit={addCommentHandler}>
-                    <textarea name="comment" placeholder="Comment......"></textarea>
+                <form className="form" onSubmit={onSubmitHandler}>
+                    <textarea 
+                    name="comment" 
+                    placeholder="Comment......"
+                    value={values.comment}
+                    onChange={onChangeHandler}
+                    ></textarea>
                     <input className="btn submit" type="submit" value="Add Comment" />
                 </form>
             </article>
