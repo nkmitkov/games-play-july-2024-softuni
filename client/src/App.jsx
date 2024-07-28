@@ -36,7 +36,7 @@ function App() {
                 </main>
             </div>
         </AuthProvider>
-    )
-}
+    );
+};
 
-export default App
+export default App;
