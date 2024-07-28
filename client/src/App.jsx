@@ -1,8 +1,6 @@
-import { useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
-import * as authService from "./services/authService";
-import AuthContext from "./contexts/authContext";
+import { AuthProvider } from "./contexts/authContext";
 import Path from "./paths";
 
 import Header from "./components/header/Header";
@@ -16,58 +14,9 @@ import Register from "./components/register/Register";
 import Logout from "./components/logout/Logout";
 
 function App() {
-    const navigate = useNavigate();
-    const [auth, setAuth] = useState(() => {
-        localStorage.removeItem("accessToken");
-
-        return {};
-    });
-
-    const loginSubmitHandler = async (values) => {
-        try {
-            const result = await authService.login(values.email, values.password);
-            
-            setAuth(result);
-
-            localStorage.setItem("accessToken", result.accessToken);
-    
-            navigate(Path.Home);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    const registerSubmitHandler = async (values) => {
-        try {
-            const result = await authService.register(values.username, values.email, values.password);
-            
-            setAuth(result);
-
-            localStorage.setItem("accessToken", result.accessToken);
-    
-            navigate(Path.Home);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    const logoutHandler = () => {
-        setAuth({});
-        localStorage.removeItem("accessToken");
-        navigate(Path.Home);
-    };
-
-    const values = {
-        loginSubmitHandler,
-        registerSubmitHandler,
-        logoutHandler,
-        username: auth.username,
-        email: auth.email,
-        isAuthenticated: !!auth.accessToken,
-    };
 
     return (
-        <AuthContext.Provider value={values}>
+        <AuthProvider>
             <div id="box">
                 <Header />
 
@@ -86,7 +35,7 @@ function App() {
 
                 </main>
             </div>
-        </AuthContext.Provider>
+        </AuthProvider>
     )
 }
 

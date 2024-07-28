@@ -14,7 +14,7 @@ const buildOptions = (data) => {
             "X-Authorization": token,
         };
     }
-
+    
     return options;
 };
 
@@ -29,7 +29,7 @@ export const request = async (method, url, data) => {
     }
 
     if (!response.ok) {
-        throw result;
+        throw response;
     }
 
     const result = await response.json();
