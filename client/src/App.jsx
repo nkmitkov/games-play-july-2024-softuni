@@ -27,7 +27,7 @@ function App() {
                         <Route path={Path.Catalog} element={<GameList />} />
                         <Route path={Path.Create} element={<GameCreate />} />
                         <Route path={Path.Details} element={<GameDetails />} />
-                        <Route path={Path.Edit} element={<GameEdit />} />
+                        <Route path={Path.GameEdit} element={<GameEdit />} />
                         <Route path={Path.Login} element={<Login />} />
                         <Route path={Path.Register} element={<Register />} />
                         <Route path={Path.Logout} element={<Logout />} />
