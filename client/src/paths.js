@@ -3,7 +3,7 @@ const Path = {
     Catalog: "/games",
     Create: "/games/create",
     Details: "/games/:gameId",
-    Edit: "/games/:gameId/edit",
+    GameEdit: "/games/:gameId/edit",
     Login: "/login",
     Register: "/register",
     Logout: "/logout",
