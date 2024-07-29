@@ -8,7 +8,7 @@ import reducer from "./commentReducer";
 import useForm from "../../hooks/useForm";
 
 export default function GameDetails() {
-    const { email } = useContext(AuthContext);
+    const { email, _id } = useContext(AuthContext);
     const { gameId } = useParams();
     // const [comments, setComments] = useState([]);
     const [comments, dispatch] = useReducer(reducer, []);
@@ -45,9 +45,11 @@ export default function GameDetails() {
         });
     };
 
-    const {values, onChangeHandler, onSubmitHandler} = useForm(addCommentHandler, {
+    const { values, onChangeHandler, onSubmitHandler } = useForm(addCommentHandler, {
         comment: "",
     });
+
+    const isOwner = _id === game._ownerId;
 
     return (
         <section id="game-details">
@@ -82,11 +84,12 @@ export default function GameDetails() {
 
                 </div>
 
-                {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
-                {/* <div className="buttons">
-                    <a href="#" className="button">Edit</a>
-                    <a href="#" className="button">Delete</a>
-                </div> */}
+                {isOwner && (
+                    <div className="buttons">
+                        <a href="#" className="button">Edit</a>
+                        <a href="#" className="button">Delete</a>
+                    </div>
+                )}
             </div>
 
             {/* <!-- Bonus --> */}
@@ -94,11 +97,11 @@ export default function GameDetails() {
             <article className="create-comment">
                 <label>Add new comment:</label>
                 <form className="form" onSubmit={onSubmitHandler}>
-                    <textarea 
-                    name="comment" 
-                    placeholder="Comment......"
-                    value={values.comment}
-                    onChange={onChangeHandler}
+                    <textarea
+                        name="comment"
+                        placeholder="Comment......"
+                        value={values.comment}
+                        onChange={onChangeHandler}
                     ></textarea>
                     <input className="btn submit" type="submit" value="Add Comment" />
                 </form>
