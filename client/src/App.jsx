@@ -14,7 +14,7 @@ import Register from "./components/register/Register";
 import Logout from "./components/logout/Logout";
 import ErrorBoundary from "./components/ErrorBoundary";
 import AuthGuard from "./components/guards/AuthGuard";
-import NotAuthGuard from "./components/guards/NotAuthGuard";
+import GuestGuard from "./components/guards/GuestGuard";
 // import BasicAuthGuard from "./components/guards/BasicAuthGuard";
 
 function App() {
@@ -38,7 +38,7 @@ function App() {
                                 <Route path={Path.Logout} element={<Logout />} />
                             </Route>
 
-                            <Route element={<NotAuthGuard />}>
+                            <Route element={<GuestGuard />}>
                                 <Route path={Path.Login} element={<Login />} />
                                 <Route path={Path.Register} element={<Register />} />
                             </Route>
