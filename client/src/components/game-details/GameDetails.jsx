@@ -10,12 +10,15 @@ import { pathToUrl } from "../../utils/pathUtil";
 import Path from "../../paths";
 
 export default function GameDetails() {
-    const { email, _id } = useContext(AuthContext);
+    const { email, _id, isAuthenticated } = useContext(AuthContext);
     const { gameId } = useParams();
     const navigate = useNavigate();
     // const [comments, setComments] = useState([]);
     const [comments, dispatch] = useReducer(reducer, []);
     const [game, setGame] = useState({});
+    
+    const isOwner = _id === game._ownerId;
+    const isShowCommentForm = isAuthenticated && !isOwner;
 
     useEffect(() => {
         gameService.getOneById(gameId)
@@ -55,8 +58,6 @@ export default function GameDetails() {
 
     const { values, onChangeHandler, onSubmitHandler } = useForm(addCommentHandler, initialValues);
 
-    const isOwner = _id === game._ownerId;
-
     const onDeleteHandler = (e) => {
         const hasConfirmed = confirm(`Are you sure you want to delete ${game.name}?`);
 
@@ -83,7 +84,6 @@ export default function GameDetails() {
                     {game.summary}
                 </p>
 
-                {/* <!-- Bonus ( for Guests and Users ) --> */}
                 <div className="details-comments">
                     <h2>Comments:</h2>
                     <ul>
@@ -96,7 +96,7 @@ export default function GameDetails() {
 
                     </ul>
 
-                    {comments.length === 0 && (<p className="no-comment">No comments.</p>)}
+                    {!comments.length && (<p className="no-comment">No comments.</p>)}
 
                 </div>
 
@@ -110,20 +110,22 @@ export default function GameDetails() {
                 )}
             </div>
 
-            {/* <!-- Bonus --> */}
-            {/* <!-- Add Comment ( Only for logged-in users, which is not creators of the current game ) --> */}
-            <article className="create-comment">
-                <label>Add new comment:</label>
-                <form className="form" onSubmit={onSubmitHandler}>
-                    <textarea
-                        name="comment"
-                        placeholder="Comment......"
-                        value={values.comment}
-                        onChange={onChangeHandler}
-                    ></textarea>
-                    <input className="btn submit" type="submit" value="Add Comment" />
-                </form>
-            </article>
+            {isShowCommentForm &&
+
+                <article className="create-comment">
+                    <label>Add new comment:</label>
+                    <form className="form" onSubmit={onSubmitHandler}>
+                        <textarea
+                            name="comment"
+                            placeholder="Comment......"
+                            value={values.comment}
+                            onChange={onChangeHandler}
+                        ></textarea>
+                        <input className="btn submit" type="submit" value="Add Comment" />
+                    </form>
+                </article>
+
+            }
 
         </section>
     );
